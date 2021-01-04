@@ -20,6 +20,7 @@ $repos = @(
 #    ,"GitTrainingContent"
     ,"Office"
     ,"SMARTS"
+    ,"Utilities"
     ,"VisualStudio"
     ,"VNC"
     ,"VNC Tracking System"
@@ -32,8 +33,8 @@ $repos = @(
     foreach ($repo in $repos)
     {
         cd "$RepoHome\$repo"
-        delimitmsg "$RepoHome\$repo - git pull --progress -v --no-rebase ""origin"" master"
-        git.exe pull --progress -v --no-rebase "origin" master
+        delimitmsg "$RepoHome\$repo - git st"
+        git st
         
         cd ..
     }
