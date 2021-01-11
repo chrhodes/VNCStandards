@@ -7,8 +7,16 @@ function delimitmsg($msg)
     Write-Host -ForegroundColor Red $delimitS ("{0,-30}" -f $msg) $delimitE
 }
 
-#$RepoHome = "P:\git\chrhodes"
-$RepoHome = "C:\vnc\git\chrhodes"
+if ($Env:COMPUTERNAME -eq "VNCDEV2020")
+{
+    $RepoHome = "P:\git\chrhodes"
+}
+else
+{
+    $RepoHome = "C:\vnc\git\chrhodes"
+}
+#
+$RepoHome 
 
 $repos = @(
     "Applications"
