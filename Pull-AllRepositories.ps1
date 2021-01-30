@@ -22,13 +22,13 @@ $repos = @(
     ,"CustomPoolAndSpa",
     ,"Explore"
     ,"EyeOnLife"
-#    ,"GitTraining"
-#    ,"GitTrainingContent"
+    ,"GitTraining"
+    ,"GitTrainingContent"
     ,"Office"
     ,"SMARTS"
     ,"VisualStudio"
     ,"VNC"
-    ,"VNC Tracking System"
+    ,"VNC-Tracking-System"
     ,"VNCCodeCommandConsole"
     ,"VNCLogViewer"
     )
