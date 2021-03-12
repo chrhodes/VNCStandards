@@ -7,7 +7,7 @@ function delimitmsg($msg)
     Write-Host -ForegroundColor Red $delimitS ("{0,-30}" -f $msg) $delimitE
 }
 
-if ($Env:COMPUTERNAME -eq "VNCDEV2020")
+if ($Env:COMPUTERNAME -eq "VNCDEV2020" -or $Env:COMPUTERNAME -eq "INFINITYRHODES")
 {
     $RepoHome = "P:\git\chrhodes"
 }
