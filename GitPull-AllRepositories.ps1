@@ -24,7 +24,7 @@ $repos = @(
     ,"EyeOnLife"
     ,"GitTraining"
     ,"GitTrainingContent"
-    ,JediOrder"
+    ,"JediOrder"
     ,"LegacyVNCCodeCommandConsole"
     ,"Office"
     ,"OfficeLegacy"
