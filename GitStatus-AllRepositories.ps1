@@ -21,12 +21,15 @@ $RepoHome
 $repos = @(
     "Applications"
     ,"AZDORestApiExplorer"
-    ,"CustomPoolAndSpa",
+    ,"CustomPoolAndSpa"
     ,"Explore"
     ,"EyeOnLife"
     ,"GitTraining"
     ,"GitTrainingContent"
+    ,JediOrder"
+    ,"LegacyVNCCodeCommandConsole"
     ,"Office"
+    ,"OfficeLegacy"
     ,"SMARTS"
     ,"Utilities"
     ,"VisualStudio"
