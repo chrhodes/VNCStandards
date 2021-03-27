@@ -1,8 +1,8 @@
 
 function delimitmsg($msg)
 {
-    $delimitS = "********** "
-    $delimitE = " **********"
+    $delimitS = "**********> "
+    $delimitE = " <**********"
 
     Write-Host -ForegroundColor Red $delimitS ("{0,-30}" -f $msg) $delimitE
 }
@@ -45,7 +45,9 @@ $repos = @(
     {
         cd "$RepoHome\$repo"
         delimitmsg "$RepoHome\$repo - git st"
+        Write-Host
         git st
+        Write-Host
         
         cd ..
     }

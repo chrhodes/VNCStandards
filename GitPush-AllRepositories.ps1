@@ -43,7 +43,9 @@ $repos = @(
     {
         cd "$RepoHome\$repo"
         delimitmsg "$RepoHome\$repo - git.exe push --progress ""origin"" master:master"
+		Write-Host
         git.exe push --progress "origin" master:master
+		Write-Host
         
         cd ..
     }

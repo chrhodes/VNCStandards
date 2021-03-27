@@ -43,7 +43,9 @@ $repos = @(
     {
         cd "$RepoHome\$repo"
         delimitmsg "$RepoHome\$repo - git pull --progress -v --no-rebase ""origin"" master"
+		Write-Host
         git.exe pull --progress -v --no-rebase "origin" master
+		Write-Host
         
         cd ..
     }
