@@ -26,6 +26,7 @@ $repos = @(
     ,"GitTrainingContent"
     ,"JediOrder"
     ,"LegacyVNCCodeCommandConsole"
+    ,"NewRepo"
     ,"Office"
     ,"OfficeLegacy"
     ,"SMARTS"
