@@ -42,7 +42,7 @@ $repos = @(
     foreach ($repo in $repos)
     {
         cd "$RepoHome\$repo"
-        delimitmsg "$RepoHome\$repo - git.exe push --progress ""origin"" master:master"
+        delimitmsg "$git.exe push --progress ""origin"" master:master"
 		Write-Host
         git.exe push --progress "origin" master:master
 		Write-Host

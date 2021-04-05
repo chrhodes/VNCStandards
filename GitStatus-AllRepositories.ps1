@@ -44,7 +44,7 @@ $repos = @(
     foreach ($repo in $repos)
     {
         cd "$RepoHome\$repo"
-        delimitmsg "$RepoHome\$repo - git st"
+        delimitmsg "git st - $RepoHome\$repo"
         Write-Host
         git st
         Write-Host

@@ -43,7 +43,7 @@ $repos = @(
     foreach ($repo in $repos)
     {
         cd "$RepoHome\$repo"
-        delimitmsg "$RepoHome\$repo - git pull --progress -v --no-rebase ""origin"" master"
+        delimitmsg "git pull --progress -v --no-rebase ""origin"" master - $RepoHome\$repo"
 		Write-Host
         git.exe pull --progress -v --no-rebase "origin" master
 		Write-Host
