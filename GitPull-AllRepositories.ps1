@@ -1,8 +1,10 @@
 
 function delimitmsg($msg)
 {
-    $delimitS = "********** "
-    $delimitE = " **********"
+    # $delimitS = "**********> "
+    # $delimitE = " <**********"
+    $delimitS = ""
+    $delimitE = ""
 
     Write-Host -ForegroundColor Red $delimitS ("{0,-30}" -f $msg) $delimitE
 }
