@@ -21,6 +21,8 @@ else
 $repos = @(
     "Applications"
     ,"AZDORestApiExplorer"
+	,"Compilers\Minsk"
+	,"Compilers\Roslyn"		
     ,"CustomPoolAndSpa"
     ,"Explore"
     ,"EyeOnLife"
@@ -48,8 +50,8 @@ $repos = @(
         Write-Host
         git.exe push --progress "origin" master:master
         Write-Host
-
-        cd ..
     }
+	
+    cd $RepoHome	
 
     Read-Host -Prompt "Press Enter to Exit"

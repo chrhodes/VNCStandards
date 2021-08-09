@@ -23,6 +23,8 @@ $RepoHome
 $repos = @(
     "Applications"
     ,"AZDORestApiExplorer"
+	,"Compilers\Minsk"
+	,"Compilers\Roslyn"		
     ,"CustomPoolAndSpa"
     ,"Explore"
     ,"EyeOnLife"
@@ -50,8 +52,8 @@ $repos = @(
         Write-Host
         git st
         Write-Host
-        
-        cd ..
     }
     
+    cd $RepoHome
+	
     Read-Host -Prompt "Press Enter to Exit"
