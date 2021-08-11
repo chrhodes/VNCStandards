@@ -23,8 +23,8 @@ $RepoHome
 $repos = @(
     "Applications"
     ,"AZDORestApiExplorer"
-	,"Compilers\Minsk"
-	,"Compilers\Roslyn"		
+    ,"Compilers\Minsk"
+    ,"Compilers\Roslyn" 
     ,"CustomPoolAndSpa"
     ,"Explore"
     ,"EyeOnLife"
@@ -55,5 +55,5 @@ $repos = @(
     }
     
     cd $RepoHome
-	
+    
     Read-Host -Prompt "Press Enter to Exit"
