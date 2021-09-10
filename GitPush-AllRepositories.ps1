@@ -33,12 +33,12 @@ $repos = @(
     ,"Office"
     ,"OfficeLegacy"
     ,"SMARTS"
-    ,"Utilities"
     ,"VisualStudio"
     ,"VNC"
     ,"VNC-Tracking-System"
     ,"VNCCodeCommandConsole"
     ,"VNCLogViewer"
+    ,"VNCStandards"
     )
 
     cd $RepoHome
