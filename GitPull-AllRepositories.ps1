@@ -9,14 +9,18 @@ function delimitmsg($msg)
     Write-Host -ForegroundColor Red $delimitS ("{0,-30}" -f $msg) $delimitE
 }
 
-if ($Env:COMPUTERNAME -eq "VNCDEV2020" -or $Env:COMPUTERNAME -eq "INFINITYRHODES")
-{
-    $RepoHome = "P:\git\chrhodes"
-}
-else
-{
-    $RepoHome = "C:\vnc\git\chrhodes"
-}
+$RepoHome = (get-item $PSScriptRoot).parent.fullname
+
+# if ($Env:COMPUTERNAME -eq "VNCDEV2020" -or $Env:COMPUTERNAME -eq "INFINITYRHODES")
+# {
+    # $RepoHome = "P:\git\chrhodes"
+# }
+# else
+# {
+    # $RepoHome = "C:\vnc\git\chrhodes"
+# }
+# #
+# $RepoHome 
 
 $repos = @(
     "Applications"
@@ -24,22 +28,25 @@ $repos = @(
     ,"Compilers\Minsk"
     ,"Compilers\Roslyn" 
     ,"CustomPoolAndSpa"
+	,"DevOps"
     ,"Explore"
     ,"EyeOnLife"
     ,"GitTraining"
     ,"GitTrainingContent"
     ,"JediOrder"
     ,"LegacyVNCCodeCommandConsole"
-    ,"NewRepo"
+	,"MSPowerShell"
     ,"Office"
     ,"OfficeLegacy"
+	,"Power-Platform"
     ,"SMARTS"
     ,"VisualStudio"
     ,"VNC"
-    ,"VNC-Tracking-System"
     ,"VNCCodeCommandConsole"
-    ,"VNCLogViewer"
-    ,"VNCStandards"    
+	,"VNCLogViewer"
+	,"VNCNFLogViewer"
+    ,"VNCStandards"   	
+    ,"VNC-Tracking-System"  
     )
 
     cd $RepoHome
