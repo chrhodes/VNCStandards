@@ -1,5 +1,5 @@
-<p align="center">
-    <img src="vnc.png">
+<p>
+    <img src="VNC.png">
 </p>
 Suggested Sections
 
@@ -17,19 +17,27 @@ Suggested Sections
 
 - List of contributors
 
-- Licence (unless listed in another document)
+- License (unless listed in another document)
 
 # <NAME OF REPO>
 
-# Table of Contents
+## Table of Contents
 
-# How to use
+## How to use
 
-# Links
+## Links
 
 ## Contributors
 
-## License
+## Support
+
+## Documentation
+
+## Videos &amp; Training
+
+## NuGet Packages
+
+## Visual Studio Templates
   
   
   
