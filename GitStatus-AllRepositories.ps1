@@ -24,18 +24,18 @@ $RepoHome = (get-item $PSScriptRoot).parent.fullname
 
 $repos = @(
     # "Applications"
-    "AZDORestApiExplorer"
+    ,"AZDORestApiExplorer"
     ,"Compilers\Minsk"
     ,"Compilers\MinskOLD"
     ,"Compilers\Roslyn" 
     ,"CustomPoolAndSpa"
     ,"DevOps"
-    # ,"GitTraining"
-    # ,"GitTrainingContent"
-    # ,"JiraRESTApiExplorer"
+    ,"GitTraining"
+    ,"GitTrainingContent"
+    ,"JiraRESTApiExplorer"
     ,"JSONConsoleApp"
     ,"Power-Platform"
-    # ,"Prism-Problems-Solutions"
+    ,"Prism-Problems-Solutions"
     ,"Python"
     ,"VNCCodeCommandConsole"
     ,"VNCCodeCommandConsoleLegacy"
@@ -46,7 +46,7 @@ $repos = @(
     ,"VNCPhidgets"
     ,"VNCPowerShell"
     ,"VNCStandards"
-    ,"VNCVisualStudio"
+    ,"VNCVisualStudio" 
     ,"VSTOTraining"
     )
 
