@@ -90,6 +90,7 @@ param
 # <TODO: Add script level parameters>
     # [switch] $SwitchArg1,
     # [switch] $SwitchArg2,
+    [string] $ProjectFileName,
     [string] $Configuration, 
     [string] $Platform,
 	[string] $TargetName,
@@ -111,8 +112,6 @@ $ScriptVar3 = @(
 )
 #>
 
-$UsePLLog = $false
-
 $SCRIPTNAME = $MyInvocation.MyCommand.Name
 $SCRIPTPATH = & { $myInvocation.ScriptName }
 $CURRENTDIRECTORY = $PSScriptRoot
@@ -129,6 +128,7 @@ function Main
 		"SCRIPTPATH         = $SCRIPTPATH"
 		"CURRENTDIRECTORY   = $CURRENTDIRECTORY"
 		
+        "ProjectFileName    = $ProjectFileName"
         "Configuration      = $Configuration"
         "Platform           = $Platform"
         "TargetName         = $TargetName"
@@ -140,214 +140,99 @@ function Main
 		"`$Verbose           = $Verbose"
     }
     
-    if ( ! (VerifyPrerequisites))
-    {
-        LogMessage "Error Verifying Prerequisites" "Main" "Error"
-        exit
-    }
-    else
-    {
-        LogMessage "Prerequisites OK" "Main" "Info"
-    }
+    # if ( ! (VerifyPrerequisites))
+    # {
+    #     LogMessage "Error Verifying Prerequisites" "Main" "Error"
+    #     exit
+    # }
+    # else
+    # {
+    #     LogMessage "Prerequisites OK" "Main" "Info"
+    # }
 
-    $message = "Beginning " + $SCRIPTNAME + ": " + (Get-Date)
-    LogMessage $message "Main" "Info"
+    # $message = "Beginning " + $SCRIPTNAME + ": " + (Get-Date)
+    # LogMessage $message "Main" "Info"
     
 # <TODO: Add code, functional calls here to do something cool>
 
-cd $CURRENTDIRECTORY
+    Set-Location $CURRENTDIRECTORY
 
-    Func1
-    
-#    Func2
-    
-#    Func3
-    
-    $message = "Ending   " + $SCRIPTNAME + ": " + (Get-Date)
-    LogMessage $message "Main" "Info"
+    UpdateFileVersion
+   
+    # $message = "Ending   " + $SCRIPTNAME + ": " + (Get-Date)
+    # LogMessage $message "Main" "Info"
 }
 
 ##############################
 # Internal Functions
 ##############################
 
-function Func1()
+function UpdateFileVersion()
 {
-#TODO - Get this from env
-    $message = $SCRIPTNAME
-    LogMessage $message $SCRIPTNAME "Info"
+    $message = "Updating FileVersion"
+    LogMessage $message "Info"
 
-    # TODO
-    # Maybe switch and handle unexpected config
+    # Read the existing project file
 
-    # if ($Configuration -eq "Debug")
-    # {
-        # $destinations = @(
-	        # "..\Common\Debug"
-	        # )
-    # }
-    # else
-    # {
-        # $destinations = @(
-	        # "..\Common"
-	        # )
-    # }
+    # This does not preserve the whitespace
+    #[xml]$xmlDoc = Get-Content $ProjectFileName
 
-    # $targets = @(
-	    # ".\bin\$Configuration\VNC.Prism.Infrastructure.dll"
-	    # ".\bin\$Configuration\VNC.Prism.Infrastructure.pdb"
-	    # )
-	
-    # "pushing new targets to destinations"
-
-    # foreach ($destination in $destinations)
-    # {
-	    # $destination
-	
-	    # foreach ($target in $targets)
-	    # {
-		    # $target
-		    # copy-item -path $target -destination $destination
-	    # }
-    # }
-}
-
-function Func2()
-{
-    $message = "Doing Something cool in Func2"
-    LogMessage $message "Func2" "Info"
-}
-
-function Func3()
-{
-    $message = "Doing Something cool in Func3"
-    LogMessage $message "Func3" "Info"
-}
-
-##############################
-# Internal Support Functions
-##############################
-
-# function Write-Status($message, $color)
-# {
-    # $message | Write-Host -ForegroundColor $color;
-# }
-
-# function LogMessage()
-# {
-    # param
-    # (
-        # [string] $message,
-        # [string] $method,
-        # [string] $logLevel
-    # )
+    # Opening like this does
     
-	# # <TODO: Each case can be modified to do the appropriate type of console/PLLog logging.
-    
-    # switch ($logLevel)
-    # {
-        # "Trace"
-        # { 
-            # if ($SCRIPT:Verbose) { Write-Status $message  "Yellow"}
-            # if ($SCRIPT:UsePLLog) { Call-PLLog -Trace   -message $message -class "Process-DLPFiles" -method $method }
-            # break
-        # }    
-        
-        # "Info"
-        # { 
-            # # if ($SCRIPT:Verbose) { Write-Host $message }   
-			# Write-Status $message "Green"
-            # if ($SCRIPT:UsePLLog) { Call-PLLog -Info    -message $message -class "Process-DLPFiles" -method $method }
-            # break
-        # }
-        
-        # "Warning"
-        # { 
-            # Write-Status $message  "Orange"
-            # if ($SCRIPT:UsePLLog) { Call-PLLog -Warning -message $message -class "Process-DLPFiles" -method $method }
-            # break
-        # }
-		
-        # "Error"
-        # { 
-            # Write-Status $message  "Red"
-            # if ($SCRIPT:UsePLLog) { Call-PLLog -Error   -message $message -class "Process-DLPFiles" -method $method }
-            # break
-        # }
-        
-        # "None"
-        # { 
-            # if ($SCRIPT:Verbose) { Write-Status $message }        
-            # break
-        # }
-        
-        # default
-        # {
-            # Write-Status $message        
-            # if ($SCRIPT:UsePLLog) {  Call-PLLog -Error "Unexpected log level" + $logLevel -class "Process-DLPFiles" -method "LogMessage" }
-            # break
-        # }
-    # }
-# }
+    $xmlDoc = [xml]::new()
+    $xmlDoc.PreserveWhitespace = $true
+    $xmlDoc.Load($ProjectFileName)
 
-function VerifyFunc1()
-{
+    $currentFileVersion = $xmlDoc.Project.PropertyGroup.FileVersion
+    $existingFileVersion = $xmlDoc.Project.PropertyGroup[0].FileVersion
 
-    $message = "  VerifyFunc1()"
-    LogMessage $message "VerifyFunc1" "Trace"
+    $propertyGroups = $xmlDoc.SelectNodes("//Project/PropertyGroup")
 
-    # Verify something
-    
-    # if ( ! (Test-Path $InputFolder))
-    # {
-        # $message = "InputFolder: " + $InputFolder + " does not exist"
-        # LogMessage $message "VerifyInputFiles" "Error"
-
-        # return $false
-    # }
-    # else
-    # {
-        # foreach ($file in $EDMFileNames)
-        # {
-            # $inputFile = ($InputFolder + "\" + $file + ".csv")
-            
-            # if ( ! (Test-Path $inputFile))
-            # {
-                # $message = "    Missing Input file: " + $inputFile
-                # LogMessage $message "VerifyInputFiles" "Error"
-
-                # return $false
-            # }
-        # }
-    # }
-    
-    return $true
-}
-    
-function VerifyFunc2()
-{
-    $message = "  VerifyFunc2()"
-    LogMessage $message "VerifyFunc2" "Trace"
-
-    return $true
-}
-    
-function VerifyPrerequisites()
-{
-    $message = "VerifyPrerequisites()"
-    LogMessage $message "VerifyPrerequisites" "Trace"
-
-    if ( ! (VerifyFunc1))
+    if ($propertyGroups.Count -ne 1)
     {
-        return $false
+        Write-Output "Project file has multiple PropertyGroups"
+        # exit
     }
+
+    # Is there an existing property?
+    $currentFileVersion2 = $propertyGroups[0].SelectSingleNode("FileVersion")
+    # if ($node) {
+    # Write-Output "Project already has TreatWarningsAsErrors set to $($node.InnerText)"
+    # exit
+    # }
+
+    # $currentFileVersion2 = (Select-Xml //ns:FileVersion $ProjectFileName -Namespace @{ ns='http://schemas.microsoft.com/developer/msbuild/2003' })[0].Node
+
+    LogMessage "existingFileVerison >$($existingFileVersion)<  currentFileVersion >$($currentFileVersion)<  currentFileVersion2 >$($currentFileVersion2.InnerText)<" "Info"
+
+    [string]$currentDate = Get-Date -Format "yyyy.MM.dd"
+
+    LogMessage "CurrentDate >$($currentDate)<" "Info"
+
+    # This doesn't work because there are multiple PropertyGroups
+
+    # $xmlDoc.Project.PropertyGroup.FileVersion = $currentDate
+
+    # This works
+    $propertyGroups[0].SelectSingleNode("FileVersion").InnerText = $currentDate
+
+    # This does not work
+    # $xmlDoc.Project.PropertyGroup[0].FileVersion.InnerText = $currentDate
+
+    # If it was one specific element you can just do like so:
+    #$xmlDoc.config.button.command = "C:\Prog32\folder\test.jar"
+    # however this wont work since there are multiple elements
+
+    # Since there are multiple elements that need to be 
+    # changed use a foreach loop
+    #foreach ($element in $xmlDoc.config.button)
+    #{
+    #    $element.command = "C:\Prog32\folder\test.jar"
+    #}
     
-    if ( ! (VerifyFunc2))
-    {
-        return $false
-    }
-            
-    return $true
+    # Then you can save that back to the xml file
+
+    $xmlDoc.Save($ProjectFileName)
 }
 
 if ($SCRIPT:Contents)
@@ -361,5 +246,5 @@ if ($SCRIPT:Contents)
 . Main
 
 #
-# End New-ScriptTemplate1.ps1
+# End Execute-PreBuild.ps1
 #
