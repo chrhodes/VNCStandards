@@ -65,20 +65,8 @@ The intended use of the function. This content appears when the Get-Help
 command includes the Functionality parameter of Get-Help.
 
 
-<ScriptName - Consider Verb-Noun>.ps1
+Execute-PreBuild.ps1
 
-SCC:
-	This script is under source code control.  Modifications should be 
-	checked into the TFS repository located at 
-		<Team Project Collection>
-	under a project 
-		$<TeamProject>/<Path>
-
-Last Update:
-
-v1.0.0 <Author>, <Date>, <Company>
-
-Be sure to leave two blank lines after end of block comment.
 #>
 
 ##############################################    
@@ -87,9 +75,6 @@ Be sure to leave two blank lines after end of block comment.
 
 param
 (
-# <TODO: Add script level parameters>
-    # [switch] $SwitchArg1,
-    # [switch] $SwitchArg2,
     [string] $ProjectFileName,
     [string] $Configuration, 
     [string] $Platform,
@@ -132,29 +117,10 @@ function Main
         "Configuration      = $Configuration"
         "Platform           = $Platform"
         "TargetName         = $TargetName"
-<#
-        "ScriptVar2         = $ScriptVar2"
-        "ScriptVar3         = $ScriptVar3"
-        ""
-#>
+
 		"`$Verbose           = $Verbose"
     }
     
-    # if ( ! (VerifyPrerequisites))
-    # {
-    #     LogMessage "Error Verifying Prerequisites" "Main" "Error"
-    #     exit
-    # }
-    # else
-    # {
-    #     LogMessage "Prerequisites OK" "Main" "Info"
-    # }
-
-    # $message = "Beginning " + $SCRIPTNAME + ": " + (Get-Date)
-    # LogMessage $message "Main" "Info"
-    
-# <TODO: Add code, functional calls here to do something cool>
-
     Set-Location $CURRENTDIRECTORY
 
     UpdateFileVersion

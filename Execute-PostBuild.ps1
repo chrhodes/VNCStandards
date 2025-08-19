@@ -73,6 +73,7 @@ Execute-PostBuild.ps1
 
 param
 (
+    [string] $ProjectFileName,
     [string] $Configuration, 
     [string] $Platform,
 	[string] $TargetName,
@@ -102,29 +103,16 @@ function Main
         "SCRIPTPATH         = $SCRIPTPATH"
         "CURRENTDIRECTORY   = $CURRENTDIRECTORY"
 
+        "ProjectFileName    = $ProjectFileName"
         "Configuration      = $Configuration"
         "Platform           = $Platform"
         "TargetName         = $TargetName"
-        "`$Verbose           = $Verbose"
+
+		"`$Verbose           = $Verbose"
     }
+
+    Set-Location $CURRENTDIRECTORY
     
-    if ( ! (VerifyPrerequisites))
-    {
-        LogMessage "Error Verifying Prerequisites" "Main" "Error"
-        exit
-    }
-    else
-    {
-        LogMessage "Prerequisites OK" "Main" "Info"
-    }
-
-    $message = "Beginning " + $SCRIPTNAME + ": " + (Get-Date)
-    LogMessage $message "Main" "Info"
-    
-# <TODO: Add code, functional calls here to do something cool>
-
-cd $CURRENTDIRECTORY
-
     Func1
     
     $message = "Ending   " + $SCRIPTNAME + ": " + (Get-Date)
@@ -137,67 +125,9 @@ cd $CURRENTDIRECTORY
 
 function Func1()
 {
-    $message = "Execute-PostBuild.ps1"
-    LogMessage $message "Execute-PostBuild.ps1" "Info"
+    $message = "Func1"
+    LogMessage $message "Info"
 
-    # TODO
-    # Maybe switch and handle unexpected config
-
-    if ($Configuration -eq "Debug")
-    {
-        $destinations = @(
-            "..\Common\Debug"
-            )
-    }
-    else
-    {
-        $destinations = @(
-	        "..\Common"
-	    )
-    }
-
-    $targets = @(
-        ".\bin\$Configuration\$TargetName.dll"
-	    ".\bin\$Configuration\$TargetName.pdb"
-	    )
-	
-    "pushing new targets to destinations"
-
-    foreach ($destination in $destinations)
-    {
-	    $destination
-	
-	    foreach ($target in $targets)
-	    {
-		    $target
-		    copy-item -path $target -destination $destination
-	    }
-    }
-}
-
-##############################
-# Internal Support Functions
-##############################
-
-function VerifyFunc1()
-{
-    $message = "  VerifyFunc1()"
-    LogMessage $message "VerifyFunc1" "Trace"
-    
-    return $true
-}
-
-function VerifyPrerequisites()
-{
-    $message = "VerifyPrerequisites()"
-    LogMessage $message "VerifyPrerequisites" "Trace"
-
-    if ( ! (VerifyFunc1))
-    {
-        return $false
-    }
-
-    return $true
 }
 
 if ($SCRIPT:Contents)
